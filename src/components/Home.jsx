@@ -1,12 +1,17 @@
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Home = () => {
+  let [meals, setMeals] = useState([])
   let getMealTypeList = async () => {
     try {
       let url = 'http://localhost:3300/api/get-meal-type-list'
-      let result = await axios.get(url)
-      console.log(result)
+      let response = await axios.get(url)
+      let data = response.data
+
+      console.log(data.result)
+
+      setMeals(data.result)
     } catch (err) {
       console.log(err)
     }
@@ -63,102 +68,23 @@ const Home = () => {
           </h5>
           <div className="mainContent mt-4">
             <section className="meal-type-list">
-              <article className="meal-type-item">
-                <div className="meal-type-item-img-div">
-                  <img
-                    className="meal-type-item-img"
-                    src="./images/food-item.png"
-                    alt=""
-                  />
-                </div>
-                <div className="meal-type-item-p-div">
-                  <p className="meal-type-item-title">Breakfast</p>
-                  <p className="meal-type-item-sub-title">
-                    Start your day with exclusive breakfast options
-                  </p>
-                </div>
-              </article>
-
-              {/* <!-- 2 --> */}
-              <article className="meal-type-item">
-                <div className="meal-type-item-img-div">
-                  <img
-                    className="meal-type-item-img"
-                    src="./images/food-item.png"
-                    alt=""
-                  />
-                </div>
-                <div className="meal-type-item-p-div">
-                  <p className="meal-type-item-title">Breakfast</p>
-                  <p className="meal-type-item-sub-title">
-                    Start your day with exclusive breakfast options
-                  </p>
-                </div>
-              </article>
-              {/* <!-- 3 --> */}
-              <article className="meal-type-item">
-                <div className="meal-type-item-img-div">
-                  <img
-                    className="meal-type-item-img"
-                    src="./images/food-item.png"
-                    alt=""
-                  />
-                </div>
-                <div className="meal-type-item-p-div">
-                  <p className="meal-type-item-title">Breakfast</p>
-                  <p className="meal-type-item-sub-title">
-                    Start your day with exclusive breakfast options
-                  </p>
-                </div>
-              </article>
-              {/* <!-- 4 --> */}
-              <article className="meal-type-item">
-                <div className="meal-type-item-img-div">
-                  <img
-                    className="meal-type-item-img"
-                    src="./images/food-item.png"
-                    alt=""
-                  />
-                </div>
-                <div className="meal-type-item-p-div">
-                  <p className="meal-type-item-title">Breakfast</p>
-                  <p className="meal-type-item-sub-title">
-                    Start your day with exclusive breakfast options
-                  </p>
-                </div>
-              </article>
-              {/* <!-- 5 --> */}
-              <article className="meal-type-item">
-                <div className="meal-type-item-img-div">
-                  <img
-                    className="meal-type-item-img"
-                    src="./images/food-item.png"
-                    alt=""
-                  />
-                </div>
-                <div className="meal-type-item-p-div">
-                  <p className="meal-type-item-title">Breakfast</p>
-                  <p className="meal-type-item-sub-title">
-                    Start your day with exclusive breakfast options
-                  </p>
-                </div>
-              </article>
-              {/* <!-- 6 --> */}
-              <article className="meal-type-item">
-                <div className="meal-type-item-img-div">
-                  <img
-                    className="meal-type-item-img"
-                    src="./images/food-item.png"
-                    alt=""
-                  />
-                </div>
-                <div className="meal-type-item-p-div">
-                  <p className="meal-type-item-title">Breakfast</p>
-                  <p className="meal-type-item-sub-title">
-                    Start your day with exclusive breakfast options
-                  </p>
-                </div>
-              </article>
+              {meals.map((meal) => {
+                return (
+                  <article className="meal-type-item">
+                    <div key={meal._id} className="meal-type-item-img-div">
+                      <img
+                        className="meal-type-item-img"
+                        src={'/images/' + meal.image}
+                        alt=""
+                      />
+                    </div>
+                    <div className="meal-type-item-p-div">
+                      <p className="meal-type-item-title">{meal.name}</p>
+                      <p className="meal-type-item-sub-title">{meal.content}</p>
+                    </div>
+                  </article>
+                )
+              })}
             </section>
           </div>
         </div>
