@@ -1,94 +1,171 @@
-.z-100 {
-  z-index: 100 !important;
-  bottom: 0;
-}
-
-.z-99 {
-  z-index: 99 !important;
-  bottom: 0;
-}
-.main-section {
-  background-color: red;
-  height: 70vh;
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.849)),
-    url('./images/shutterstock_348320018@2x.png');
-  background-position: center;
-  background-size: 100%;
-}
-.brand-name {
-  width: 130px;
-  height: 130px;
-  background-color: white;
-  color: red;
-  border-radius: 75px;
-  font-size: 4.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.text-navy {
-  color: #192f60 !important;
-}
-.rest-search-auto-complete img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-}
-
-.image-item {
-  width: 45%;
-  height: 20vh;
-}
-.quick-search-item {
-  width: 32%;
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-
-/* search page start */
-.brand {
-  background-color: white;
-  height: 40px;
-  width: 40px;
-  border-radius: 25px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hand {
-  cursor: pointer;
-}
-.food-shadow {
-  box-shadow: 0 0 5px 0px gray;
-  cursor: pointer;
-}
-.food-item {
-  width: 120px;
-  height: 120px;
-  border-radius: 25px;
-}
-
-.pages {
-  list-style: none;
+* {
+  margin: 0;
   padding: 0;
-  display: flex;
+  box-sizing: border-box;
 }
-.pages li {
-  border: 1px solid gray;
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
-  border-radius: 5px;
-  color: gray;
+:root {
+  --heading-color: #192f60;
+  --color-: #8c96ab;
+  --shadow: 0px 3px 6px #00000029;
+  --cards-color: #ffffff;
+}
+
+/* ======= HEADER ELEMENT ======= */
+body:not(.mainContent div p) {
+  font-family: poppins, 'sans-serif';
+  text-transform: capitalize;
+}
+.zomatoNavigation {
+  background-image: linear-gradient(
+      transparent,
+      hsl(20 0% 0% / 0.3),
+      hsl(0 0% 0% / 0.7)
+    ),
+    url('./images/shutterstock_348320018@2x.png');
+  background-size: cover;
+  height: 70vh;
+  text-transform: capitalize;
+}
+nav button {
+  position: relative;
+  animation-name: slideDown;
+  animation-duration: 1s;
+}
+div .container input {
+  height: 4rem;
+  width: 30%;
+  padding-left: 2rem;
+  outline: none;
+  position: relative;
+  margin-top: 2rem;
+}
+div .container input:nth-child(3) {
+  width: 50%;
+}
+nav button:nth-child(2) {
+  border: 2px solid white;
+  border-radius: 0.4rem;
+}
+
+div .restaurantTitle {
+  font-size: 4rem;
+  color: white;
+  padding: 0.4rem;
+}
+div div .searchIcon {
+  position: relative;
+  left: 25px;
+  z-index: 1;
+}
+/* ================ MAIN CONTENT ============== */
+body div .gallery {
+  width: 50%;
+  height: auto;
+  /* object-fit: contain; */
+}
+body div h1 {
+  color: var(--heading-color);
   font-weight: bold;
 }
-.pages .active {
-  border: 1px solid white;
-  color: white;
-  background-color: gray;
+.cards {
+  background-color: var(--cards-color);
+  box-shadow: var(--shadow);
+  margin-right: 1rem;
+}
+.container h3 {
+  font-weight: 100;
+  color: var(--color-);
+}
+.mainContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.mainContent div h3 {
+  color: var(--heading-color);
+}
+.mainContent div p {
+  color: var(--color-);
+  font-size: 1rem;
+}
+/* ============ KEYFRAMES =========== */
+@keyframes slideDown {
+  0% {
+    top: -300px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes slideTop {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1320px) {
+  div .restaurantTitle {
+    font-size: 3rem;
+  }
+  div .container input {
+    height: 3rem;
+  }
+  div div .searchIcon {
+    position: absolute;
+    z-index: 1;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .mainContent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  div .container input {
+    width: 100%;
+  }
+  div .container input:nth-child(3) {
+    width: 100%;
+  }
+  div div .searchIcon {
+    top: 44px;
+    left: -450px;
+    position: relative;
+    z-index: 1;
+  }
+  div .container input {
+    margin-top: 0.5rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  header .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    position: relative;
+  }
+  header .container input:first-child {
+    margin-bottom: 15px;
+  }
+  header div .restaurantTitle {
+    margin-top: 5rem;
+  }
+  div div .searchIcon {
+    top: 5.8rem;
+    font-size: small;
+    z-index: 1;
+    position: absolute;
+    left: 16px;
+  }
+  .mainContent {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 /********** bootstrap-restaurant-page*/
@@ -106,77 +183,4 @@
   background-color: rgba(245, 222, 179, 0.411);
   color: black;
   font-weight: bold;
-}
-
-/* menu item  */
-.menu-food-item {
-  width: 90px;
-  height: 90px;
-  background-color: #192f60;
-  position: relative;
-}
-.menu-food-item .add {
-  position: absolute;
-  left: 25%;
-  bottom: -20%;
-}
-.menu-food-item img {
-  width: 100%;
-  height: 100%;
-}
-.menu-food-item .order-item-count {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: -20%;
-}
-.menu-food-item .order-item-count span {
-  background-color: white;
-  padding: 2px 5px;
-  border: 2px solid gray;
-  margin: 0 2px;
-}
-/* search page end */
-
-/* iphone SE */
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-  /* physical 960x640 
-   480x320
-*/
-
-  .brand-name {
-    width: 100px;
-    height: 100px;
-    font-size: 3.5rem;
-  }
-  .search {
-    width: 100% !important;
-    flex-direction: column;
-    align-items: center;
-  }
-  .search > div {
-    width: 100% !important;
-  }
-  .form-control {
-    width: 80% !important;
-  }
-  .input-group {
-    width: 100% !important;
-  }
-
-  .search > div > .set-100 {
-    width: 100% !important;
-  }
-
-  .main-section {
-    background-color: red;
-    height: auto;
-    padding-bottom: 2rem;
-    background-size: cover;
-  }
-  .quick-search-item {
-    width: 100%;
-    margin-bottom: 8px;
-  }
 }
