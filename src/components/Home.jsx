@@ -1,6 +1,24 @@
+import axios from 'axios'
+import { useEffect } from 'react'
+
 const Home = () => {
+  let getMealTypeList = async () => {
+    try {
+      let url = 'http://localhost:3300/api/get-meal-type-list'
+      let result = await axios.get(url)
+      console.log(result)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // useEffect for calling only once our variable
+
+  useEffect(() => {
+    getMealTypeList()
+  }, [])
   return (
-    <div>
+    <>
       <header>
         <div className="zomatoNavigation">
           {/* <!-- BUTTONS --> */}
@@ -34,7 +52,7 @@ const Home = () => {
           </div>
         </div>
       </header>
-      <body>
+      <div>
         <div className="container mt-3">
           <h1 className="mt-4 mb-3">Quick Searches</h1>
           <h3 className="text-muted d-none d-lg-flex">
@@ -144,8 +162,8 @@ const Home = () => {
             </section>
           </div>
         </div>
-      </body>
-    </div>
+      </div>
+    </>
   )
 }
 export default Home
