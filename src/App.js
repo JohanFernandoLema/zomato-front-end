@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <main className="container-fluid">
-        <Home />
-        <Search />
+        {/* <Home />
+        <Search /> */}
         <Restaurant />
       </main>
     </>
