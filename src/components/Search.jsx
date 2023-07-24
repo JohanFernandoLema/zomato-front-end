@@ -139,7 +139,7 @@ const Search = () => {
           <div class="col-12 col-lg-8 col-md-7">
             <div class="col-12 food-shadow p-4 mb-4">
               <div class="d-flex align-items-center">
-                <img src="./images/food-item.png" class="food-item" />
+                <img src="./images/food-item.png" alt="" class="food-item" />
                 <div class="ms-5">
                   <p class="h4 fw-bold">The Big Chill Cakery</p>
                   <span class="fw-bold text-muted">FORT</span>
@@ -170,7 +170,7 @@ const Search = () => {
 
             <div class="col-12 food-shadow p-4 mb-4">
               <div class="d-flex align-items-center">
-                <img src="/images/food-item.png" class="food-item" />
+                <img src="/images/food-item.png" alt="" class="food-item" />
                 <div class="ms-5">
                   <p class="h4 fw-bold">The Big Chill Cakery</p>
                   <span class="fw-bold text-muted">FORT</span>
