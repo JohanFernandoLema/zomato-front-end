@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-
+import './Home.scss'
 const Home = () => {
   let initData = {
     city_id: 0,
@@ -71,32 +71,33 @@ const Home = () => {
             <p className="h1 text-white mb-4 mt-5">
               find the best restaurants, cafes, and bars
             </p>
-            <div className="container">
-              <div></div>
-              <input
-                list="location"
-                type="text"
-                placeholder="Please select a location"
-                className="ps-2 me-2"
-                readOnly
-                value={selectLocationID.name}
-                onClick={() => setHidden(false)}
-              />
-              {hidden ? null : (
-                <ul className="list-group">
-                  {locations.map((location, index) => {
-                    return (
-                      <li
-                        key={location._id}
-                        className="list-group-item"
-                        onClick={() => setAsSelectedLocation(index)}
-                      >
-                        {location.name}
-                      </li>
-                    )
-                  })}
-                </ul>
-              )}
+            <div className="container searchInputs">
+              <div className="containerLocations">
+                <input
+                  list="location"
+                  type="text"
+                  placeholder="Please select a location"
+                  className="ps-2 me-2 inputField"
+                  readOnly
+                  value={selectLocationID.name}
+                  onClick={() => setHidden(false)}
+                />
+                {hidden ? null : (
+                  <ul className="list-group">
+                    {locations.map((location, index) => {
+                      return (
+                        <li
+                          key={location._id}
+                          className="list-group-item"
+                          onClick={() => setAsSelectedLocation(index)}
+                        >
+                          {location.name}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
+              </div>
               <span className="searchIcon">
                 <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
               </span>
@@ -114,23 +115,23 @@ const Home = () => {
           <h5 className="text-muted d-lg-none">
             Discover restaurants by their type of meal
           </h5>
-          <div className="mainContent mt-4">
-            <section className="meal-type-list">
+          <div className="mt-4">
+            <section className="mainContent meal-type-list">
               {meals.map((meal) => {
                 return (
-                  <article key={meal._id} className="meal-type-item">
-                    <div className="meal-type-item-img-div">
-                      <img
-                        className="meal-type-item-img"
-                        src={'/images/' + meal.image}
-                        alt=""
-                      />
+                  <div key={meal._id} className="d-flex bg cards mb-5">
+                    <img
+                      src={'/images/' + meal.image}
+                      alt=""
+                      className="gallery me-2"
+                    />
+                    <div>
+                      <div className="p-4 d-inline-block">
+                        <h3 className="fw-bold">{meal.name}</h3>
+                        <p>{meal.content}</p>
+                      </div>
                     </div>
-                    <div className="meal-type-item-p-div">
-                      <p className="meal-type-item-title">{meal.name}</p>
-                      <p className="meal-type-item-sub-title">{meal.content}</p>
-                    </div>
-                  </article>
+                  </div>
                 )
               })}
             </section>

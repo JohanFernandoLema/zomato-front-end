@@ -55,6 +55,7 @@ div .restaurantTitle {
 div div .searchIcon {
   position: relative;
   left: 25px;
+  top: 53px;
   z-index: 1;
 }
 /* ================ MAIN CONTENT ============== */
@@ -117,7 +118,7 @@ body div h1 {
     height: 3rem;
   }
   div div .searchIcon {
-    position: absolute;
+    top: 45px;
     z-index: 1;
   }
 }
@@ -133,9 +134,7 @@ body div h1 {
     width: 100%;
   }
   div div .searchIcon {
-    top: 44px;
-    left: -450px;
-    position: relative;
+    top: 20px;
     z-index: 1;
   }
   div .container input {
@@ -158,9 +157,8 @@ body div h1 {
   div div .searchIcon {
     top: 5.8rem;
     font-size: small;
-    z-index: 1;
-    position: absolute;
-    left: 16px;
+    top: 42px;
+    left: -330px;
   }
   .mainContent {
     display: grid;

@@ -1,0 +1,29 @@
+.searchInputs {
+  display: flex;
+  justify-content: space-around;
+}
+.containerLocations {
+  position: relative;
+  width: 50%;
+  .inputField {
+    width: 100%;
+  }
+  ul {
+    height: 15vh;
+    width: 100%;
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .containerLocations {
+    width: 100%;
+  }
+
+  ul {
+    height: 15vh;
+    width: 100%;
+    position: relative;
+    top: -15px;
+  }
+}
