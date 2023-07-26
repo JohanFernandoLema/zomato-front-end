@@ -11,7 +11,7 @@ const Home = () => {
   }
   let [meals, setMeals] = useState([])
   let [selectLocationID, setSelectLocationID] = useState({ ...initData })
-  let [hidden, setHidden] = useState(false)
+  let [hidden, setHidden] = useState(true)
   let [locations, setLocations] = useState([])
 
   let setAsSelectedLocation = (id) => {
@@ -45,12 +45,27 @@ const Home = () => {
     }
   }
 
+  let getRestaurantByLocId = async () => {
+    let url =
+      'http://localhost:3300/api/get-location-by-loc/' +
+      selectLocationID.location_id
+    let { data } = await axios.get(url)
+    console.log(data)
+  }
+
   // useEffect for calling only once our variable
 
   useEffect(() => {
     getMealTypeList()
     getLocationList()
   }, [])
+
+  useEffect(() => {
+    if (selectLocationID.location_id !== 0) {
+      getRestaurantByLocId()
+    }
+    // eslint-disable-next-line
+  }, [selectLocationID])
   return (
     <>
       <header>
