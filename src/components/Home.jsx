@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import './Home.scss'
+import { useNavigate } from 'react-router-dom'
 const Home = () => {
+  let navigate = useNavigate()
   let initData = {
     city_id: 0,
     country_name: '',
@@ -124,29 +126,37 @@ const Home = () => {
               <span className="searchIcon">
                 <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
               </span>
-              <input
-                type="text"
-                placeholder={restaurantList.message}
-                onChange={() => {}}
-                readOnly
-              />
+              <div>
+                <input
+                  type="text"
+                  placeholder={restaurantList.message}
+                  onChange={() => {}}
+                  readOnly
+                />
+                <ul className="list-group restaurantList">
+                  {restaurantList.list.map((restaurant) => {
+                    return (
+                      <li
+                        key={restaurant._id}
+                        className="list-group-item"
+                        onClick={() =>
+                          navigate('/restaurants/' + restaurant._id)
+                        }
+                      >
+                        <img
+                          className="imageRestaurant"
+                          src={'/images/assets/' + restaurant.image}
+                          alt=""
+                        />
+                        <span>
+                          {restaurant.name} {restaurant.locality}
+                        </span>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             </div>
-            <ul>
-              <ul className="list-group">
-                {restaurantList.list.map((restaurant, index) => {
-                  return (
-                    <li
-                      key={restaurant._id}
-                      className="list-group-item"
-                      onClick={() => setAsSelectedLocation(index)}
-                    >
-                      <img src={'/images/assets/' + restaurant.image} alt="" />
-                      <span>{restaurant.name}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </ul>
           </div>
         </div>
       </header>
