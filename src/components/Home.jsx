@@ -13,6 +13,10 @@ const Home = () => {
   let [selectLocationID, setSelectLocationID] = useState({ ...initData })
   let [hidden, setHidden] = useState(true)
   let [locations, setLocations] = useState([])
+  let [restaurantList, setRestaurantList] = useState({
+    list: [],
+    message: '0 restaurant found',
+  })
 
   let setAsSelectedLocation = (id) => {
     console.log(id)
@@ -50,7 +54,11 @@ const Home = () => {
       'http://localhost:3300/api/get-location-by-loc/' +
       selectLocationID.location_id
     let { data } = await axios.get(url)
-    console.log(data)
+    setRestaurantList({
+      list: data.result,
+      message: data.result.length + ' restaurant found',
+    })
+    console.log(data.result)
   }
 
   // useEffect for calling only once our variable
@@ -116,8 +124,29 @@ const Home = () => {
               <span className="searchIcon">
                 <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
               </span>
-              <input type="text" placeholder="Search Restaurants" />
+              <input
+                type="text"
+                placeholder={restaurantList.message}
+                onChange={() => {}}
+                readOnly
+              />
             </div>
+            <ul>
+              <ul className="list-group">
+                {restaurantList.list.map((restaurant, index) => {
+                  return (
+                    <li
+                      key={restaurant._id}
+                      className="list-group-item"
+                      onClick={() => setAsSelectedLocation(index)}
+                    >
+                      <img src={'/images/assets/' + restaurant.image} alt="" />
+                      <span>{restaurant.name}</span>
+                    </li>
+                  )
+                })}
+              </ul>
+            </ul>
           </div>
         </div>
       </header>
